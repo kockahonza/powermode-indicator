@@ -16,11 +16,11 @@ AppMenu::AppMenu(std::shared_ptr<Indicator> indicator)
   m_performance_menu_item.set_group(m_group1);
 
   if (std::find(profiles_available.begin(), profiles_available.end(),
-                "balanced") != profiles_available.end())
-    add(m_balanced_menu_item);
-  if (std::find(profiles_available.begin(), profiles_available.end(),
                 "power-saver") != profiles_available.end())
     add(m_power_saver_menu_item);
+  if (std::find(profiles_available.begin(), profiles_available.end(),
+                "balanced") != profiles_available.end())
+    add(m_balanced_menu_item);
   if (std::find(profiles_available.begin(), profiles_available.end(),
                 "performance") != profiles_available.end())
     add(m_performance_menu_item);
@@ -52,13 +52,13 @@ AppMenu::~AppMenu() {}
 
 void AppMenu::update() {
   if (this->m_current_profile == "balanced") {
-    m_indicator.get()->change_icon("speedometer");
+    m_indicator.get()->change_icon("power-profile-balanced-symbolic");
     this->m_balanced_menu_item.set_active();
   } else if (this->m_current_profile == "power-saver") {
-    m_indicator.get()->change_icon("battery-profile-powersave");
+    m_indicator.get()->change_icon("power-profile-power-saver-symbolic");
     this->m_power_saver_menu_item.set_active();
   } else if (this->m_current_profile == "performance") {
-    m_indicator.get()->change_icon("battery-profile-performance");
+    m_indicator.get()->change_icon("power-profile-performance-symbolic");
     this->m_performance_menu_item.set_active();
   }
 }
